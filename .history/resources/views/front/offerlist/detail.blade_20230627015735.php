@@ -1,0 +1,1 @@
+<h1>ID: {{ $data['id'] }} Type: {{ $data['type'] }}</h1>
