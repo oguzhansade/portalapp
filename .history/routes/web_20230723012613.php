@@ -40,6 +40,15 @@ Route::group(['namespace' => 'front', 'middleware' => ['auth']], function () {
         Route::post('/data', [App\Http\Controllers\front\firma\indexController::class, 'data'])->name('data');
         Route::post('/recordData/{id}', [App\Http\Controllers\front\firma\indexController::class, 'recordData'])->name('recordData');
     });
+
+    Route::group(['namespace' => 'offerList', 'as' => 'offerList.','prefix' => 'offerList'], function () {
+        Route::get('/', [App\Http\Controllers\front\offerList\indexController::class, 'index'])->name('index');
+        Route::post('/data', [App\Http\Controllers\front\offerList\indexController::class, 'data'])->name('data');
+        
+        Route::get('/statusChanger/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'statusChanger'])->name('statusChanger');
+        Route::get('/detail/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'detail'])->name('detail');
+        
+    });
 });
 
 

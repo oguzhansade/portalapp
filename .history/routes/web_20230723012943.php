@@ -22,8 +22,8 @@ Route::get('/kontaktform', [App\Http\Controllers\front\formcraft\FormCraftContro
 Route::get('/reinigungform', [App\Http\Controllers\front\formcraft\FormCraftController::class, 'handleReinigungForm'])->name('handleReinigungForm');
 Route::get('/firmenform', [App\Http\Controllers\front\formcraft\FormCraftController::class, 'handleFirmenForm'])->name('handleFirmenForm');
 Route::get('/mailTester', [App\Http\Controllers\front\formcraft\FormCraftController::class, 'mailTester'])->name('mailTester');
-Auth::routes();
 
+Auth::routes(['register' => false]);
 
 Route::group(['namespace' => 'front', 'middleware' => ['auth']], function () {
     Route::group(['namespace' => 'home', 'as' => 'home.'], function () {
@@ -33,11 +33,19 @@ Route::group(['namespace' => 'front', 'middleware' => ['auth']], function () {
         Route::get('/', [App\Http\Controllers\front\firma\indexController::class, 'index'])->name('index');
         Route::get('/create', [App\Http\Controllers\front\firma\indexController::class, 'create'])->name('create');
         Route::post('/create', [App\Http\Controllers\front\firma\indexController::class, 'store'])->name('store');
-        Route::get('/detail/{id}', [App\Http\Controllers\front\firma\indexController::class, 'edit'])->name('edit');
+        Route::get('/detail/{id}', [App\Http\Controllers\front\firma\indexController::class, 'detail'])->name('detail');
         Route::get('/edit/{id}', [App\Http\Controllers\front\firma\indexController::class, 'edit'])->name('edit');
         Route::post('/edit/{id}', [App\Http\Controllers\front\firma\indexController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [App\Http\Controllers\front\firma\indexController::class, 'delete'])->name('delete');
         Route::post('/data', [App\Http\Controllers\front\firma\indexController::class, 'data'])->name('data');
+        Route::post('/recordData/{id}', [App\Http\Controllers\front\firma\indexController::class, 'recordData'])->name('recordData');
+    });
+
+    Route::group(['namespace' => 'offerList', 'as' => 'offerList.','prefix' => 'offerList'], function () {
+        Route::get('/', [App\Http\Controllers\front\offerList\indexController::class, 'index'])->name('index');
+        Route::post('/data', [App\Http\Controllers\front\offerList\indexController::class, 'data'])->name('data');
+        Route::post('/statusChanger/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'statusChanger'])->name('statusChanger');
+        Route::get('/detail/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'detail'])->name('detail');
     });
 });
 

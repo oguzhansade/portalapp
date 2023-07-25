@@ -45,9 +45,7 @@ Route::group(['namespace' => 'front', 'middleware' => ['auth']], function () {
         Route::get('/', [App\Http\Controllers\front\offerList\indexController::class, 'index'])->name('index');
         Route::post('/data', [App\Http\Controllers\front\offerList\indexController::class, 'data'])->name('data');
         Route::post('/statusChanger/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'statusChanger'])->name('statusChanger');
-        Route::get('/statusChanger/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'statusChanger'])->name('statusChanger');
         Route::get('/detail/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'detail'])->name('detail');
-        
     });
 });
 
