@@ -67,9 +67,9 @@
                             <label for="" class="col-form-label">Kantons</label><br>
                             <div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input"  type="checkbox" id="Aargau" name="kantoArray[]" value="Aargau" 
-                                    @if (strpos($data['kantons'], 'Aargau') !== false) checked @endif>
-                                    <label class="form-check-label" for="Aargau">Aargau</label>
+                                    <input class="form-check-input"  type="checkbox" id="Aargau" name="kantoArray[]" value="Aargau" >
+                                    <label class="form-check-label" for="Aargau"
+                                    @if (strpos($data['kantons'], 'Aargau') !== false) checked @endif>Aargau</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="AppenzellAusserrhoden" name="kantoArray[]" value="Appenzell Ausserrhoden"
@@ -191,18 +191,18 @@
                                     <input class="form-check-input" type="checkbox" id="Zug" name="kantoArray[]" value="Zug" 
                                     @if (strpos($data['kantons'], 'Zug') !== false) checked @endif>
                                     <label class="form-check-label" for="Zug">Zug</label>
-                                </div>
+                                </div><br>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="Zürich" name="kantoArray[]" value="Zürich" 
                                     @if (strpos($data['kantons'], 'Zürich') !== false) checked @endif>
                                     <label class="form-check-label" for="Zürich">Zürich</label>
-                                </div>
+                                </div><br>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="Ausland" name="kantoArray[]" value="Ausland" 
                                     @if (strpos($data['kantons'], 'Ausland') !== false) checked @endif>
                                     <label class="form-check-label" for="Ausland">Ausland</label>
                                 </div><br>
-                                <small class="text-danger">At least one kanton must be selected</small>
+                                <small class="text-danger">Zug,Zürich,Aargau is necessary cannot be changed</small>
                             </div>
                         </div>
                     </div>

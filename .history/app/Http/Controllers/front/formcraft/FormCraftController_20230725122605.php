@@ -193,5 +193,29 @@ class FormCraftController extends Controller
         // return response()->json(['message' => 'FormCraft verileri başarıyla alındı ve dosyaya yazıldı.']);
     }
 
+    public function handleKontaktForm(Request $request)
+    {
+        $formData = $request->all();
+        
+        $kontaktForm = [
+            'entryId' => $formData['Entry_ID'],
+            'anrede' => $formData['Anrede'],
+            'fullname' => $formData['Vorname_/_Nachname'],
+            'mail' => $formData['Ihre_E-Mail-Adresse'],
+            'telefon' => $formData['Telefon'],
+            'nachricht' => $formData['Ihre_Nachricht'],
+            'type' => 'Kontakt',
+        ];
+
+        KontaktForm::create($kontaktForm);
+    
+        $idFinder = DB::table('kontakt_forms')->orderBy('id', 'DESC')->first(); // Son Eklenen Umzug un id'si
+        $kontaktId = $idFinder->id;
+
+        // FirmaSelector::FirmaSelector($kontaktId,'Kontakt','Kontakt');
+
+        // İşlem sonucunu döndür
+        // return response()->json(['message' => 'FormCraft verileri başarıyla alındı ve dosyaya yazıldı.']);
+    }
 
 }

@@ -62,7 +62,7 @@
         </tr>
         <tr>
             <td><strong>Reinigungstermin</strong></td>
-            <td>@if($data['reinigungTermin']){{ date('d.m.Y', strtotime($data['reinigungTermin']));  }} @else - @endif</td>
+            <td>{{ date('d.m.Y', strtotime($data['reinigungTermin']));  }}</td>
         </tr>
         <tr>
             <td><strong>Unternehmen</strong></td>
@@ -130,7 +130,7 @@
         </tr>
         <tr>
             <td><strong>Umzugsdatum</strong></td>
-            <td>@if($data['umzugDate']){{ date('d.m.Y', strtotime($data['umzugDate']));  }} @else - @endif</td>
+            <td>{{ date('d.m.Y', strtotime($data['umzugDate']));  }}</td>
         </tr>
         <tr>
             <td><strong>Nach: Lift vorhanden?</strong></td>
@@ -199,7 +199,7 @@
         </tr>
         <tr>
             <td><strong>Umzugsdatum</strong></td>
-            <td>@if($data['umzugDate']){{ date('d.m.Y', strtotime($data['umzugDate']));  }} @else - @endif</td>
+            <td>{{ date('d.m.Y', strtotime($data['umzugDate']));  }}</td>
         </tr>
         <tr>
             <td><strong>Nach: Lift vorhanden?</strong></td>

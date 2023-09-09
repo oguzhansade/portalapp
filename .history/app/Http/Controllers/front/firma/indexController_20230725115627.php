@@ -31,15 +31,12 @@ class indexController extends Controller
     {
         $all = $request->except('_token');
 
-        $kantoArray = $request->input('kantoArray');
-        $kantons = implode(',', $kantoArray); // Diziyi virgülle ayrılmış bir dizeye dönüştürür
         $firma = [
             'name' => $request->firmaName,
             'mail' => $request->firmaMail,
             'counter1' => $request->entryRecord,
             'counter2' => $request->entryLimit,
             'status' => $request->firmaStatus,
-            'kantons' => $kantons,
         ];
 
         $create = Firma::create($firma);
@@ -103,16 +100,12 @@ class indexController extends Controller
             $all = $request->except('_token');
             $data = Firma::where('id',$id)->first();
             
-            $kantoArray = $request->input('kantoArray');
-            $kantons = implode(',', $kantoArray); // Diziyi virgülle ayrılmış bir dizeye dönüştürür
-        
-            $update = Firma::where('id',$id)->update([
+            $update = Firma::where('id',$id)->update($firma = [
                 'name' => $request->firmaName,
                 'mail' => $request->firmaMail,
                 'counter1' => $request->entryRecord,
                 'counter2' => $request->entryLimit,
                 'status' => $request->firmaStatus,
-                'kantons' => $kantons,
             ]);
 
         }
