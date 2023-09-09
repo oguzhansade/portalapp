@@ -48,6 +48,7 @@
 
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
+                    @if(Auth::check() && App\Models\User::getUser(Auth::id(),'firmaId') == 0)
                     <ul class="navbar-nav me-auto ">
                         <li class="nav-item dropdown ml-5">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -64,6 +65,7 @@
                             </div>
                         </li>
                     </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">

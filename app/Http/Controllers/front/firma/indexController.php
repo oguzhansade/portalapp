@@ -256,12 +256,33 @@ class indexController extends Controller
             }
             
             $update = Firma::where('id',$id)->update($updateFirma);
-            $updateUser = User::where('firmaId',$id)->update($user);
+            $userCounter = User::where('firmaId',$id)->count();
+            if($userCounter != 0)
+            {
+                $updateUser = User::where('firmaId',$id)->update($user);
+            }
+            else{
+                $userCreate = [
+                    'name' => $request->firmaName,
+                    'email' => $request->firmaMail,
+                    'firmaId' => $id,
+                    'password' => Hash::make($request->firmaPassword),
+                ];
+                $userCreator = User::create($userCreate);
+            }
+            
             
         }
-        if($update && $updateUser) 
+        if($update) 
             {   
-                return redirect()->back()->with('status','Firma Başarıyla Güncellendi');
+                if($updateUser)
+                {
+                    return redirect()->back()->with('status','Firma Başarıyla Güncellendi');
+                }
+                elseif($userCreator)
+                {
+                    return redirect()->back()->with('status','Firma Başarıyla Güncellendi, Kullanıcı Oluşturuldu');
+                }
             }
             else {
                 return redirect()->back()->with('status2','Hata:Firma Güncellenemedi');

@@ -52,7 +52,32 @@
                 <span class="h4 px-4 py-2 bg-primary text-white b-shadow rounded-custom">Hoşgeldin: <b>{{ App\Models\User::getUser(Auth::id(),'name') }}</b></span> </span>
             </div>
         </div>
-        
+        @if(App\Models\User::getUser(Auth::id(),'firmaId')> 0)
+        <div class="row d-flex justify-content-start mt-5">
+            <div class="col-lg-3 col-md-4 col-sm-4 p-1">
+                <a href="{{ route('firma.detail',['id' => App\Models\User::getUser(Auth::id(),'firmaId')]) }}" class="hvr-grow text-decoration-none">
+                    <div class="card b-shadow" style="width: 18rem;border:0;border-radius:35px;">
+                        <img src="{{ asset('assets/demo/firmaList.svg') }}" class="card-img-top p-3 " alt="..." height="150">
+                        <div class="card-body bg-primary b-shadow" style="border-bottom-left-radius:35px;border-bottom-right-radius:35px;">
+                            <h5 class="card-title text-white text-center">Teklif Listesi </h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 p-1">
+                <a href="{{ route('firmaUser.edit',['id' => App\Models\User::getUser(Auth::id(),'firmaId')]) }}" class="hvr-grow text-decoration-none">
+                    <div class="card b-shadow" style="width: 18rem;border:0;border-radius:35px;">
+                        <img src="{{ asset('assets/demo/firmaList.svg') }}" class="card-img-top p-3 " alt="..." height="150">
+                        <div class="card-body bg-primary b-shadow" style="border-bottom-left-radius:35px;border-bottom-right-radius:35px;">
+                            <h5 class="card-title text-white text-center">Firmanı Düzenle</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        @elseif(App\Models\User::getUser(Auth::id(),'firmaId') == 0)
         <div class="row d-flex justify-content-start mt-5">
             <div class="col-lg-3 col-md-4 col-sm-4 p-1">
                 <a href="{{ route('offerList.index') }}" class="hvr-grow text-decoration-none">
@@ -89,8 +114,8 @@
                     </div>
                 </a>
             </div>
-            
         </div>
+        @endif
     </div>
     
 @endsection
