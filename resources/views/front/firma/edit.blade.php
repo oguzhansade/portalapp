@@ -47,6 +47,31 @@
                         </div>
 
                         <div class="col-md-6">
+                            <label class=" col-form-label" for="l0">Password</label>
+                            <input class="form-control"  name="firmaPassword"   type="password">                                 
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class=" col-form-label" for="l0">Telefon</label>
+                            <input class="form-control"  name="firmaTelefon"  type="text" value="{{ $data['telefon'] }}" required>                                 
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class=" col-form-label" for="l0">Address</label>
+                            <input class="form-control"  name="firmaAddress"  type="text" value="{{ $data['address'] }}" required>                                 
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class=" col-form-label" for="l0">Contact Person</label>
+                            <input class="form-control"  name="firmaContactPerson"  type="text" value="{{ $data['contactPerson'] }}" required>                                 
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class=" col-form-label" for="l0">Website</label>
+                            <input class="form-control"  name="firmaWebsite"  type="text" value="{{ $data['website'] }}" required>                                 
+                        </div>
+
+                        <div class="col-md-6">
                             <label class=" col-form-label" for="l0">Offers</label>
                             <input class="form-control"  name="entryRecord"  type="number" value="{{ $data['counter1'] }}" required>                                 
                         </div>

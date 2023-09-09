@@ -17,6 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('mail')->nullable();
+            $table->string('kantons')->nullable();
+            $table->string('telefon')->nullable();
+            $table->longText('address')->nullable();
+            $table->string('contactPerson')->nullable();
+            $table->string('website')->nullable();
             $table->integer('counter1')->nullable();
             $table->integer('counter2')->nullable();
             $table->string('status')->nullable();

@@ -2,6 +2,7 @@
 
 namespace App\Helper;
 
+use App\Mail\CustomerMail;
 use Carbon\Carbon;
 use DateTime;
 use DateTimeZone;
@@ -68,6 +69,9 @@ class FirmaSelector
                 'type' => $type
             ];
             OfferFirma::create($recordArray);
+
+            
+
             $firma = Firma::where('id',$record['firmaId'])->first();
             if($type == 'Schnellanfrage')
             {
@@ -207,8 +211,38 @@ class FirmaSelector
             
         };
        
-        // $fileContents = json_encode($offerFirmaCounts);
-        // $filePath = storage_path('app/public/secilenler4.txt'); // Dosyanın tam yolu
+        $offers = array_map(function ($item) {
+            unset($item['records']);
+            return $item;
+        }, $selectedOffers);
+        
+
+        if($type == 'Schnellanfrage')
+        {
+            $form = schnellenform::where('id',$offerId)->first();
+            $customerName = $form['fullname'];
+            $customerMail = $form['email'];
+            $entryId = $form['entryId'];
+        }
+
+        $newOffers = array_map(function ($offer) {
+            $firmaId = $offer['firmaId'];
+        
+            // Firma modelinden ilgili firma bilgilerini çekelim
+            $firma = Firma::find($firmaId);
+        
+            // Yeni bir öğe oluşturup istediğimiz alanları atayalım
+            return [
+                'name' => $firma->name,
+                'mail' => $firma->mail,
+                'telefon' => $firma->telefon,
+                'address' => $firma->address,
+                'contactPerson' => $firma->contactPerson
+            ];
+        }, $offers);
+
+        // $fileContents = json_encode($newOffers);
+        // $filePath = storage_path('app/public/testDizi.txt'); // Dosyanın tam yolu
     
         // if (!file_exists($filePath)) {
         //     touch($filePath); // Dosyayı oluştur
@@ -216,5 +250,22 @@ class FirmaSelector
         // }
     
         // file_put_contents($filePath, $fileContents);
+
+        $customerMailData = [
+            'sub' => 'Ihre Offertanfrage auf umzugspreisvergleich.ch',
+            'from' => 'info@umzugpreisvergleich.ch',
+            'companyName' => 'Umzugspreisvergleich',
+            'customerName' => $customerName,
+            'customerMail' => $customerMail,
+            'entryId' => $entryId,
+            'firmas' => $newOffers,
+            'offerId' => $offerId,
+            'type' => $type,
+            'offer' => $form,
+        ];
+        
+        Mail::to($customerMail)->send(new CustomerMail($customerMailData));
+
+        
     }
 }

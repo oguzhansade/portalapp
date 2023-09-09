@@ -10,16 +10,122 @@ use App\Models\OfferFirma;
 use App\Models\PrivatUmzugForm;
 use App\Models\ReinigungForm;
 use App\Models\schnellenform;
+use App\Models\User;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+
+
 
 
 
 class indexController extends Controller
 {
+    public function change()
+    {
+        
+    }
+    public function mailTest()
+    {
+        $data = schnellenform::where('id',247)->first();
+        $offer = [
+            'offer' => $data,
+        ];
+        return view('front.firma.mailTester', ['data' => $offer]);
+    }
     public function index()
     {
+        $veriler = schnellenform::all(); // Tüm verileri çek
+
+        foreach ($veriler as $veri) {
+            $zimmer = $veri->zimmer; // privatUmzug da farklı
+            $zimmerU = $zimmer;
+            // "1/2" ifadesini "0.5" ile değiştir
+            if($zimmer == '1 1/2 Zimmer / Räume')
+            {
+                $zimmerU = '1.5 Zimmer / Räume';
+            }
+            if($zimmer == '1 1/2 Zimmer / Raum')
+            {
+                $zimmerU = '1.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '2 1/2 Zimmer / Räume')
+            {
+                $zimmerU = '2.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '3 1/2 Zimmer / Räume')
+            {
+                $zimmerU = '3.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '4 1/2 Zimmer / Räume')
+            {
+                $zimmerU = '4.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '5 1/2 Zimmer / Räume')
+            {
+                $zimmerU = '5.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '6 1/2 Zimmer / Räume')
+            {
+                $zimmerU = '6.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '1.5 Zimmer')
+            {
+                $zimmerU = '1.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '1 Zimmer')
+            {
+                $zimmerU = '1 Zimmer / Raum';
+            }
+            elseif($zimmer == '2 Zimmer')
+            {
+                $zimmerU = '2 Zimmer Räume';
+            }
+            elseif($zimmer == '2.5 Zimmer')
+            {
+                $zimmerU = '2.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '3 Zimmer')
+            {
+                $zimmerU = '3 Zimmer / Räume';
+            }
+            elseif($zimmer == '3.5 Zimmer')
+            {
+                $zimmerU = '3.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '4 Zimmer')
+            {
+                $zimmerU = '4 Zimmer / Räume';
+            }
+            elseif($zimmer == '4.5 Zimmer')
+            {
+                $zimmerU = '4.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '5 Zimmer')
+            {
+                $zimmerU = '5 Zimmer / Räume';
+            }
+            elseif($zimmer == '5.5 Zimmer')
+            {
+                $zimmerU = '5.5 Zimmer / Räume';
+            }
+            elseif($zimmer == '6 Zimmer')
+            {
+                $zimmerU = '6 Zimmer / Räume';
+            }
+            elseif($zimmer == '6.5 Zimmer')
+            {
+                $zimmerU = '6.5 Zimmer / Räume';
+            }
+            
+            // Düzenlenmiş değeri güncelle
+            $veri->zimmer = $zimmerU;
+            $veri->save();
+        }
+
         return view('front.firma.index');
     }
     public function create()
@@ -40,13 +146,26 @@ class indexController extends Controller
             'counter2' => $request->entryLimit,
             'status' => $request->firmaStatus,
             'kantons' => $kantons,
+            'address' => $request->firmaAddress,
+            'telefon' => $request->firmaTelefon,
+            'contactPerson' => $request->firmaContactPerson,
+            'website' => $request->firmaWebsite
         ];
 
         $create = Firma::create($firma);
+        $idFinder = DB::table('firmas')->orderBy('id', 'DESC')->first(); // Son Eklenen firmanın id'si
+        $firmaId = $idFinder->id;
 
-        if($create)
+        $userCreate = [
+            'name' => $request->firmaName,
+            'email' => $request->firmaMail,
+            'firmaId' => $firmaId,
+            'password' => Hash::make($request->firmaPassword),
+        ];
+        $createUser = User::create($userCreate);
+        if($create && $createUser)
         {   
-            return redirect()->back()->with('status','Firma Başarıyla Eklendi');
+            return redirect()->back()->with('status','Firma Başarıyla Eklendi Kullanıcı Oluşturuldu');
         }
         else {
             return redirect()->back()->with('status2','Hata:Firma Eklenemedi');
@@ -70,10 +189,9 @@ class indexController extends Controller
         if($c !=0)
         {
             $data = Firma::where('id',$id)->first();
-            
             return view ('front.firma.detail', ['data' => $data]);
         }
-        
+
     }
 
     public function delete($id)
@@ -82,6 +200,7 @@ class indexController extends Controller
         if($c !=0)
         {
             $records = OfferFirma::where('firmaId',$id)->delete();
+            $deleteUser = User::where('firmaId',$id)->delete();
             $delete = Firma::where('id',$id)->delete();
 
             if($delete) 
@@ -106,17 +225,41 @@ class indexController extends Controller
             $kantoArray = $request->input('kantoArray');
             $kantons = implode(',', $kantoArray); // Diziyi virgülle ayrılmış bir dizeye dönüştürür
         
-            $update = Firma::where('id',$id)->update([
+            $updateFirma = [
                 'name' => $request->firmaName,
                 'mail' => $request->firmaMail,
                 'counter1' => $request->entryRecord,
                 'counter2' => $request->entryLimit,
                 'status' => $request->firmaStatus,
                 'kantons' => $kantons,
-            ]);
-
+                'address' => $request->firmaAddress,
+                'telefon' => $request->firmaTelefon,
+                'contactPerson' => $request->firmaContactPerson,
+                'website' => $request->firmaWebsite
+            ];
+            
+            $password = $request->firmaPassword;
+            if($password == "") {
+                $user = [
+                    'name' => $request->firmaName,
+                    'email' => $request->firmaMail,
+                    
+                ];
+                
+            }
+            else{
+                $user = [
+                    'name' => $request->firmaName,
+                    'email' => $request->firmaMail,
+                    'password' => Hash::make($password),
+                ];
+            }
+            
+            $update = Firma::where('id',$id)->update($updateFirma);
+            $updateUser = User::where('firmaId',$id)->update($user);
+            
         }
-        if($update) 
+        if($update && $updateUser) 
             {   
                 return redirect()->back()->with('status','Firma Başarıyla Güncellendi');
             }
@@ -171,21 +314,24 @@ class indexController extends Controller
     public function recordData( Request $request)
     {
         $id = $request->route('id');
-        $table=OfferFirma::query()->where('firmaId',$id);
+        $table = OfferFirma::query()->where('firmaId', $id);
+        $offers = OfferFirma::query()->where('firmaId', $id)->pluck('offerId')->toArray();
+                
+       
+
         $toplamTeklif = $table->count();
+
         // Minimum date filter
-        if($request->min_date) {
+        if ($request->min_date) {
             $table->whereDate('created_at', '>=', $request->min_date);
         }
-        
+
         // Maximum date filter
-        if($request->max_date) {
+        if ($request->max_date) {
             $table->whereDate('created_at', '<=', $request->max_date);
         }
-
         
         $data=DataTables::of($table)
-        
         ->editColumn('created_at', function ($data) {
             $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d-m-Y H:i:s');
             return $formatedDate;
@@ -209,10 +355,6 @@ class indexController extends Controller
             elseif($data['type'] == 'Firmen')
             {
                 $customer = FirmenForm::where('id',$data['offerId'])->first();
-            }
-            elseif($data['type'] == 'Kontakt')
-            {
-                $customer = KontaktForm::where('id',$data['offerId'])->first();
             }
             
             return $customer['fullname'];

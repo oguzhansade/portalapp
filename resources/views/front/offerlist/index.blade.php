@@ -186,7 +186,7 @@
                                 <tbody>
                                     <tr>
                                         <td><b class="test-dark">Erfasst</b></td>
-                                        <td><input class="form-control" type="date" id="start_date" name="min_date"></td>
+                                        <td align="left"><input class="form-control" type="date" id="start_date" name="min_date"></td>
                                         <td><b class="test-dark">bis</b></td>
                                         <td><input class="form-control" type="date" id="end_date" name="max_date"></td>
                                         <td><button id="reset" class="btn btn-danger">Zurücksetzen</button></td>
@@ -194,29 +194,89 @@
                                     <tr>
                                         <td>
                                             <b class="test-dark">Stand</b>
+                                            
+                                          
+                                        </td>
+                                        <td colspan="2">
                                             <select class="form-control" name="status" id="status">
-                                            <option value="Alle">Tümü</option>
-                                            <option value="Aktif">Aktif</option>
-                                            <option value="Pasif">Pasif</option>
-                                          </select>
+                                                <option value="Alle">Tümü</option>
+                                                <option value="Aktif">Aktif</option>
+                                                <option value="Pasif">Pasif</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="5">
+                                            <button class="btn btn-primary" onclick="openFilter()" type="button" data-toggle="collapse" data-target="#checkbox-container" aria-expanded="false" aria-controls="checkbox-container">
+                                                Zimmer Filters
+                                              </button>
+                                            <div id="checkbox-container" class="collapse">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input zimmerFilter" onclick="updateCheckedValues()"  type="checkbox" id="checkbox1" name="zimmerFilter[]" value="1 Zimmer / Raum" >
+                                                    <label class="form-check-label" for="checkbox1">1 Zimmer / Raum</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox2" name="zimmerFilter[]" value="1.5 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox2">1.5 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox3" name="zimmerFilter[]" value="2 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox3">2 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox4" name="zimmerFilter[]" value="2.5 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox4">2.5 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox5" name="zimmerFilter[]" value="3 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox5">3 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox6" name="zimmerFilter[]" value="3.5 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox6">3.5 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox7" name="zimmerFilter[]" value="4 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox7">4 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox8" name="zimmerFilter[]" value="4.5 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox8">4.5 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox9" name="zimmerFilter[]" value="5 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox9">5 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox10" name="zimmerFilter[]" value="5.5 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox10">5.5 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox11" name="zimmerFilter[]" value="6 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox11">6 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox12" name="zimmerFilter[]" value="6.5 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox12">6.5 Zimmer / Räume</label>
+                                                </div>
+                                                <div class="form-check form-check-inline zimmerFilter">
+                                                    <input class="form-check-input"  type="checkbox" onclick="updateCheckedValues()" id="checkbox13" name="zimmerFilter[]" value="mehr als 6.5 Zimmer / Räume" >
+                                                    <label class="form-check-label" for="checkbox13">mehr als 6.5 Zimmer / Räume</label>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-2 ">
+                        <div class="col-md-3">
                             <div class="p-3 text-white bg-primary shadow rounded">
                                 <table style="font-size:1rem">
                                     <tr>
                                         <td><span>Toplam Teklif</span></td>
                                         <td>: <span id="toplamTeklif"></span></td>
                                     </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-md-2 ">
-                            <div class="p-3 text-white bg-primary shadow rounded">
-                                <table style="font-size:1rem">
                                     <tr>
                                         <td><span>Aktif Teklif</span></td>
                                         <td>: <span id="aktifTotal"></span></td>
@@ -241,6 +301,7 @@
                                     <th>Offerte Number</th>
                                     <th>Firmas</th>
                                     <th>Type</th>
+                                    <th>Zimmer</th>
                                     <th>Datum</th>
                                     <th>Status</th>
                                     <th>Option</th>
@@ -268,9 +329,46 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
-
+   
+    <script>    
+       function openFilter() {
+    var checkboxContainer = $('#checkbox-container');
+    
+    if (checkboxContainer.css('display') === 'none') {
+        checkboxContainer.slideDown(300); // 300ms içinde yukarı aç
+    } else {
+        checkboxContainer.slideUp(300);   // 300ms içinde yukarı kapat
+    }
+}
+        
+    </script>
     <script>
+        let checkedValues = [];
+
+        function updateCheckedValues() {
+            const checkboxIds = [
+                'checkbox1', 'checkbox2', 'checkbox3', 'checkbox4', 
+                'checkbox5', 'checkbox6', 'checkbox7', 'checkbox8', 
+                'checkbox9', 'checkbox10', 'checkbox11', 'checkbox12', 'checkbox13'
+            ];
+
+            checkboxIds.forEach(checkboxId => {
+                const checkbox = document.getElementById(checkboxId);
+                checkbox.addEventListener('change', () => {
+                    const index = checkedValues.indexOf(checkbox.value);
+                    if (checkbox.checked && index === -1) {
+                        checkedValues.push(checkbox.value);
+                    } else if (!checkbox.checked && index !== -1) {
+                        checkedValues.splice(index, 1);
+                    }
+                });
+            });
+        }
+
+
         $(document).ready(function() {
+            
+
             let table = $('#example').DataTable({
                 lengthMenu: [
                     [25, 100, -1],
@@ -288,6 +386,7 @@
                         d.min_date = $('#start_date').val();
                         d.max_date = $('#end_date').val();
                         d.status = $('#status').val();
+                        d.zimmerFilter = checkedValues;
                         return d
                     }
                 },
@@ -307,6 +406,10 @@
                     {
                         data: 'type',
                         name: 'type'
+                    },
+                    {
+                        data: 'zimmer',
+                        name: 'zimmer'
                     },
                     {
                         data: 'created_at',
@@ -382,6 +485,11 @@
                 table.draw();
             });
 
+            $('#checkbox-container').on('change', function () {
+                table.draw();
+                console.log(checkedValues,'çekbox değerleri')
+            })
+
             $('#reset').on('click', function() {
                 $('#start_date').val('');
                 $('#end_date').val('');
@@ -397,6 +505,31 @@
     }
 }
 </script>
+<script>
+    function cancelOffer(id, type) {
+     if (confirm("Teklifi iptal etmek istediğinizden emin misiniz? (İlgili firmalara mail gider)")) {
+         confirmAndCancel(id, type);
+     }
+ }
+ </script>
+ <script>
+    function confirmAndCancel(id,type){
+    let table= $('#example').DataTable();
+    
+     console.log(id,type);
+         $.ajax({
+             type:'POST',
+             headers: {'X-CSRF-TOKEN': '{{csrf_token()}}'},
+             url: '{{ route('offerList.cancelOffer', ['id' => ':id', 'type' => ':type']) }}'.replace(':id', id).replace(':type', type),
+             success: function(response) {
+                table.draw();
+             },
+             error: function(xhr, status, error) {
+                 // handle error response
+             }
+         });
+     }
+ </script>
 <script>
    function confirmAndChange(id,type){
    let table= $('#example').DataTable();

@@ -14,6 +14,26 @@
             </div>
         </div>
         <div class="row">
+            <div class="col-md-12">
+                <form action="{{ route('offerList.cancelOffer',['id'=>$data['id'], 'type' => $data['type']]) }}" method="POST"  enctype="multipart/form-data">
+                    @csrf
+                    <label  for=""><b>Teklif Durumu:</b></label>
+                    <div class="row ">
+                        <div class="col-md-3">
+                            <select class="form-control" name="" id="">
+                                <option value="0" @if($data['canceled'] == 0) selected @endif>Onaylandı</option>
+                                <option value="1" @if($data['canceled'] == 1) selected @endif>İptal Edildi</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button id="formValidation"  class="btn btn-primary ml-3">Gönder</button>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+        <div class="row mt-3">
             <div class="wrapper rounded shadow p-3" >
                 <div class="col-md-12 ">
                     @if ($data['type'] == 'Schnellanfrage')
@@ -292,4 +312,7 @@
             
         </div>
     </div>
+@endsection
+@section('footer')
+
 @endsection
