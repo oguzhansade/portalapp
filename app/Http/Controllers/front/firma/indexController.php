@@ -314,7 +314,7 @@ class indexController extends Controller
         ->editColumn('status', function($table){
             if($table->status == 'Pasif')
             {
-                return '<button class="btn btn-sm btn-warning">Passiv</button>';
+                return '<button class="btn btn-sm btn-warning">Storniert</button>';
             }
             else {
                 return '<button class="btn btn-sm btn-success">Aktiv</button>';
@@ -354,6 +354,17 @@ class indexController extends Controller
             $table->whereDate('created_at', '<=', $request->max_date);
         }
         
+        if($request->status) {
+            if ($request->status == 'Aktif') {
+                $table->where('status', 'Aktif');
+            }
+            else if ($request->status == 'Pasif') {
+                $table->where('status', 'Pasif');
+            }
+            else if ($request->status == 'Alle') {
+                
+            }
+        }
         // if ($request->kundeSearch) {
         //     $table->where(function ($query) use ($request) {
         //         $query->where('fullname', 'like', '%' . $request->kundeSearch . '%')
@@ -426,7 +437,7 @@ class indexController extends Controller
         ->editColumn('status', function ($data) {
             if($data['status'] == 'Pasif')
             {
-                return '<a class="btn btn-sm  btn-warning px-5">Passiv</a>';
+                return '<a class="btn btn-sm  btn-warning px-5">Storniert</a>';
             }
             else {
                 return '<a class="btn btn-sm  btn-success px-5">Aktiv</a>';

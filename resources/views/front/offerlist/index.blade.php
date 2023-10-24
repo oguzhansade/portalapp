@@ -199,9 +199,9 @@
                                         </td>
                                         <td colspan="2">
                                             <select class="form-control" name="status" id="status">
-                                                <option value="Alle">Tümü</option>
-                                                <option value="Aktif">Aktif</option>
-                                                <option value="Pasif">Pasif</option>
+                                                <option value="Alle">Gesamt</option>
+                                                <option value="Aktif">Aktiv</option>
+                                                <option value="Pasif">Storniert</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -274,16 +274,16 @@
                             <div class="p-3 text-white bg-primary shadow rounded">
                                 <table style="font-size:1rem">
                                     <tr>
-                                        <td><span>Toplam Teklif</span></td>
+                                        <td><span>Gesamt</span></td>
                                         <td>: <span id="toplamTeklif"></span></td>
                                     </tr>
                                     <tr>
-                                        <td><span>Aktif Teklif</span></td>
+                                        <td><span>Aktiv</span></td>
                                         <td>: <span id="aktifTotal"></span></td>
                                 
                                     </tr>
                                     <tr>
-                                        <td><span>Pasif Teklif</span></td>
+                                        <td><span>Storniert</span></td>
                                         <td>: <span id="pasifTotal"></span></td>
                                     </tr>
                                 </table>

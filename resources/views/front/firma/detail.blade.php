@@ -194,6 +194,17 @@
                                     <tr>
                                         <td><b>Kunde Search</b></td>
                                         <td><input id="customerSearch" type="text" name="kundeSearch"></td>
+                                        <td>
+                                            <b class="test-dark">Status</b>
+                                            
+                                        </td>
+                                        <td>
+                                            <select class="form-control" name="status" id="status">
+                                                <option value="Alle">Alle</option>
+                                                <option value="Aktif">Aktiv</option>
+                                                <option value="Pasif">Storniert</option>
+                                              </select>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -208,7 +219,7 @@
                                 
                                     </tr>
                                     <tr>
-                                        <td><span>Passive</span></td>
+                                        <td><span>Storniert</span></td>
                                         <td>: <span id="pasifTotal" class="text-primary"></span></td>
                                     </tr>
                                     <tr>
@@ -282,7 +293,8 @@
                     data: function(d) {
                         d.min_date = $('#start_date').val();
                         d.max_date = $('#end_date').val();
-                        d.kundeSearch = $('#customerSearch').val();
+                        d.kundeSearch = $('#customerSearch').val(); 
+                        d.status = $('#status').val();
                         return d
                     }
                 },
@@ -390,7 +402,7 @@
                     .draw();
             });
 
-            $('#start_date, #end_date, #customerSearch').on('change', function() {
+            $('#start_date, #end_date, #customerSearch, #status').on('change', function() {
                 table.draw();
             });
 

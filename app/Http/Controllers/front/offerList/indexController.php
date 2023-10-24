@@ -197,10 +197,10 @@ class indexController extends Controller
            
                 if($array['status'] == 'Pasif')
                 {
-                    return sprintf('<button class="btn btn-sm btn-warning payButton" onClick="statusChanger(%d, \'%s\')">Pasif</button>', $array['id'], $array['type']);
+                    return sprintf('<button class="btn btn-sm btn-warning payButton" onClick="statusChanger(%d, \'%s\')">Storniert</button>', $array['id'], $array['type']);
                 }
                 else {
-                    return sprintf('<button class="btn btn-sm btn-success payButton" onClick="statusChanger(%d, \'%s\')">Aktif</button>', $array['id'], $array['type']);
+                    return sprintf('<button class="btn btn-sm btn-success payButton" onClick="statusChanger(%d, \'%s\')">Aktiv</button>', $array['id'], $array['type']);
                 }
                    
         })
@@ -393,10 +393,10 @@ class indexController extends Controller
            
                 if($array['status'] == 'Pasif')
                 {
-                    return sprintf('<button class="btn btn-sm btn-warning payButton" onClick="statusChanger(%d, \'%s\')">Pasif</button>', $array['id'], $array['type']);
+                    return sprintf('<button class="btn btn-sm btn-warning payButton" onClick="statusChanger(%d, \'%s\')">Storniert</button>', $array['id'], $array['type']);
                 }
                 else {
-                    return sprintf('<button class="btn btn-sm btn-success payButton" onClick="statusChanger(%d, \'%s\')">Aktif</button>', $array['id'], $array['type']);
+                    return sprintf('<button class="btn btn-sm btn-success payButton" onClick="statusChanger(%d, \'%s\')">Aktiv</button>', $array['id'], $array['type']);
                 }
                    
         })
