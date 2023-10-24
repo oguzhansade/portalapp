@@ -14,6 +14,7 @@
             </div>
         </div>
         <div class="row">
+            @if(App\Models\User::getUser(Auth::id(),'firmaId') == 0)
             <div class="col-md-12">
                 <form action="{{ route('offerList.cancelOffer',['id'=>$data['id'], 'type' => $data['type']]) }}" method="POST"  enctype="multipart/form-data">
                     @csrf
@@ -30,8 +31,8 @@
                         </div>
                     </div>
                 </form>
-                
             </div>
+            @endif
         </div>
         <div class="row mt-3">
             <div class="wrapper rounded shadow p-3" >

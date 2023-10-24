@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\schnellenform;
 
 class OfferFirma extends Model
 {
@@ -20,4 +21,5 @@ class OfferFirma extends Model
         $countRecord = OfferFirma::count();
         return $countRecord;
     }
+
 }

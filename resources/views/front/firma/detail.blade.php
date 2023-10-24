@@ -150,7 +150,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Firma Detay</h1>
+                <h1>Firmendetails</h1>
             </div>
         </div>
 
@@ -178,10 +178,10 @@
             <div class="col-md-12 widget-holder">
                 <div class="widget-bg">
                     <div class="widget-heading clearfix">
-                        <h5><strong style="color:#8253eb;">{{ $data['name'] }}</strong> Teklif Listesi</h5>
+                        <h5><strong style="color:#8253eb;">{{ $data['name'] }}</strong> Angebotsliste</h5>
                     </div>
                     <div class="row">
-                        <div class="col-md-8">
+                        <div class="col-md-10">
                             <table border="0" class="text-dark" cellspacing="5" cellpadding="5" >
                                 <tbody>
                                     <tr>
@@ -191,36 +191,34 @@
                                         <td><input class="form-control" type="date" id="end_date" name="max_date"></td>
                                         <td><button id="reset" class="btn btn-danger">Zurücksetzen</button></td>
                                     </tr>
-                                   
-                                   
+                                    <tr>
+                                        <td><b>Kunde Search</b></td>
+                                        <td><input id="customerSearch" type="text" name="kundeSearch"></td>
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="col-md-2 ">
-                            <div class="p-3 text-white bg-primary shadow rounded">
+                        <div class="col-md-2">
+                            <div class="p-3 text-dark bg-white shadow rounded" style="border: 1px solid #F8FAFC">
                                 <table style="font-size:1rem">
+                                    
                                     <tr>
-                                        <td><span>Toplam Teklif</span></td>
-                                        <td>: <span id="toplamTeklif"></span></td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="col-md-2 ">
-                            <div class="p-3 text-white bg-primary shadow rounded">
-                                <table style="font-size:1rem">
-                                    <tr>
-                                        <td><span>Aktif Teklif</span></td>
-                                        <td>: <span id="aktifTotal"></span></td>
+                                        <td><span>Aktive</span></td>
+                                        <td>: <span id="aktifTotal" class="text-primary"></span></td>
                                 
                                     </tr>
                                     <tr>
-                                        <td><span>Pasif Teklif</span></td>
-                                        <td>: <span id="pasifTotal"></span></td>
+                                        <td><span>Passive</span></td>
+                                        <td>: <span id="pasifTotal" class="text-primary"></span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span>Gesamt</span></td>
+                                        <td>: <span id="toplamTeklif" class="text-primary"></span></td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
+                        
                         
                     </div>
                     <!-- /.widget-heading -->
@@ -228,11 +226,11 @@
                         <table id="example" class="table table-striped table-responsive">
                             <thead>
                                 <tr class="text-dark">
-                                    <th>Type</th>
-                                    <th>OfferId</th>
-                                    <th>Customer</th>
+                                    <th>Typ</th>
+                                    <th>Angebotnnr</th>
+                                    <th>Kunde</th>
                                     <th>Firma</th>
-                                    <th>Date</th>
+                                    <th>Datum</th>
                                     <th>Status</th>
                                     <th>Option</th>
                                 </tr>
@@ -263,7 +261,6 @@
     <script>
         $(document).ready(function() {
             let table = $('#example').DataTable({
-                "order": [4, 'desc'],
                 lengthMenu: [
                     [25, 100, -1],
                     [25, 100, "All"]
@@ -285,10 +282,11 @@
                     data: function(d) {
                         d.min_date = $('#start_date').val();
                         d.max_date = $('#end_date').val();
+                        d.kundeSearch = $('#customerSearch').val();
                         return d
                     }
                 },
-                order: [[ 1, "desc" ]],
+                order: [[ 4, "desc" ]],
                 columns: [
                     {
                         data: 'type',
@@ -314,7 +312,6 @@
                     {
                         data: 'status',
                         name: 'status',
-                        orderable: false,
                         searchable: false,
                     },
                     {
@@ -325,6 +322,20 @@
                     },
                 ],
 
+                "language": {
+                        "paginate": {
+                            "previous": "Vorherige",
+                            "next" : "Nächste"
+                        },
+                        "search" : "Suche",     
+                        "lengthMenu": "_MENU_ Einträge pro Seite anzeigen",
+                        "zeroRecords": "Nichts gefunden - es tut uns leid",
+                        "info": "Zeige Seite _PAGE_ von _PAGES_",
+                        "infoEmpty": "Keine Einträge verfügbar",
+                        "infoFiltered": "(aus insgesamt _MAX_ Einträgen gefiltert)",
+                
+                    },
+                    
                 "footerCallback": function ( row, data, start, end, display ) {
                     var rsTot = table.ajax.json();    
                     var api = this.api(), data;
@@ -379,7 +390,7 @@
                     .draw();
             });
 
-            $('#start_date, #end_date').on('change', function() {
+            $('#start_date, #end_date, #customerSearch').on('change', function() {
                 table.draw();
             });
 

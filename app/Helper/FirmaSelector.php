@@ -84,8 +84,10 @@ class FirmaSelector
                     'entryId' => $offer['entryId'],
                     'von1' => $offer['von1'],
                     'von2' => $offer['von2'],
+                    'vonKanton' => $offer['vonKanton'],
                     'nach1' => $offer['nach1'],
                     'nach2' => $offer['nach2'],
+                    'nachKanton' => $offer['nachKanton'],
                     'umzugdate' => $offer['umzugdate'],
                     'zimmer' => $offer['zimmer'],
                     'fullname' => $offer['fullname'],
@@ -105,6 +107,7 @@ class FirmaSelector
                     'email' => $firma['mail'],
                     'entryId' => $offer['entryId'],
                     'address' => $offer['address'],
+                    'vonKanton' => $offer['vonKanton'],
                     'anzahlZimmer' => $offer['anzahlZimmer'],
                     'm2' => $offer['m2'],
                     'reinigungTermin' => $offer['reinigungTermin'],
@@ -129,12 +132,14 @@ class FirmaSelector
                     'entryId' => $offer['entryId'],
                     'vonStrasse' => $offer['vonStrasse'],
                     'vonPlzOrt' => $offer['vonPlzOrt'],
+                    'vonKanton' => $offer['vonKanton'],
                     'anzahlZimmer' => $offer['anzahlZimmer'],
                     'vonEtage' => $offer['vonEtage'],
                     'ausLift' => $offer['ausLift'],
                     'weitere' => $offer['weitere'],
                     'nachStrasse' => $offer['nachStrasse'],
                     'nachPlzOrt' => $offer['nachPlzOrt'],
+                    'nachKanton' => $offer['nachKanton'],
                     'nachEtage' => $offer['nachEtage'],
                     'umzugDate' => $offer['umzugDate'],
                     'einLift' => $offer['einLift'],
@@ -159,12 +164,14 @@ class FirmaSelector
                     'entryId' => $offer['entryId'],
                     'vonStrasse' => $offer['vonStrasse'],
                     'vonPlzOrt' => $offer['vonPlzOrt'],
+                    'vonKanton' => $offer['vonKanton'],
                     'anzahlRaume' => $offer['anzahlRaume'],
                     'vonEtage' => $offer['vonEtage'],
                     'vonLift' => $offer['vonLift'],
                     'nachStrasse' => $offer['nachStrasse'],
                     'nachPlzOrt' => $offer['nachPlzOrt'],
                     'nachEtage' => $offer['nachEtage'],
+                    'nachKanton' => $offer['nachKanton'],
                     'umzugDate' => $offer['umzugDate'],
                     'nachLift' => $offer['nachLift'],
                     'firma' => $offer['firma'],
@@ -178,24 +185,6 @@ class FirmaSelector
                 ];
             }
 
-            if($type == 'Kontakt')
-            {
-                $offer = KontaktForm::where('id',$offerId)->first();
-                $emailData = [
-                    'sub' => 'Neue Anfrage: Kontaktaufnahme-Anfrage',
-                    'from' => 'info@umzugspreisvergleich.ch',
-                    'companyName' => 'Umzugspreisvergleich.ch',
-                    'email' => $firma['mail'],
-                    'entryId' => $offer['entryId'],
-                    'anrede' => $offer['anrede'],
-                    'fullname' => $offer['fullname'],
-                    'customerEmail' => $offer['mail'],
-                    'telefon' => $offer['telefon'],
-                    'nachricht' => $offer['nachricht'],
-                    'type' => $offer['type'],
-                    'created_at' => $offer['created_at']
-                ];
-            }
             
             Mail::to($emailData['email'])->send(new OfferMail($emailData));
             $firmasayac = [

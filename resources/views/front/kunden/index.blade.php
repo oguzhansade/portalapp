@@ -150,7 +150,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Offerte</h1>
+                <h1>Kunden</h1>
             </div>
         </div>
 
@@ -178,7 +178,7 @@
             <div class="col-md-12 widget-holder">
                 <div class="widget-bg">
                     <div class="widget-heading clearfix">
-                        <h5>Angebotsliste</h5>
+                        <h5>Kundenliste</h5>
                     </div>
                     <div class="row">
                         <div class="col-md-8">
@@ -297,10 +297,12 @@
                         <table id="example" class="table table-striped table-responsive">
                             <thead>
                                 <tr class="text-dark">
-                                    <th>Customer</th>
                                     <th>Offerte Number</th>
-                                    <th>Firmas</th>
-                                    <th>Type</th>
+                                    <th>Customer</th>
+                                    <th>Email</th>
+                                    <th>Telefon</th>
+                                    <th>Von Adresse</th>
+                                    <th>Nach Adresse</th>
                                     <th>Zimmer</th>
                                     <th>Datum</th>
                                     <th>Status</th>
@@ -371,9 +373,10 @@
 
             let table = $('#example').DataTable({
                 lengthMenu: [
-                    [25, 100, -1],
-                    [25, 100, "All"]
+                    [50, 100, -1],
+                    [50, 100, "All"]
                 ],
+                "pageLength": 50,
                 dom: 'Bfrtip',
                 buttons: [
                     'copy', 'csv', 'excel', 'pdf', 'print'
@@ -385,7 +388,7 @@
                     headers: {
                         'X-CSRF-TOKEN': '{{ csrf_token() }}'
                     },
-                    url: '{{ route('offerList.data') }}',
+                    url: '{{ route('offerList.data2') }}',
                     data: function(d) {
                         d.min_date = $('#start_date').val();
                         d.max_date = $('#end_date').val();
@@ -394,22 +397,30 @@
                         return d
                     }
                 },
-                order: [[ 1, "desc" ]],
+                order: [[ 0, "desc" ]],
                 columns: [{
-                        data: 'customerName',
-                        name: 'customerName'
-                    },
-                    {
                         data: 'offerId',
                         name: 'offerId'
                     },
                     {
-                        data: 'firma',
-                        name: 'firma'
+                        data: 'customerName',
+                        name: 'customerName'
                     },
                     {
-                        data: 'type',
-                        name: 'type'
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'telefon',
+                        name: 'telefon'
+                    },
+                    {
+                        data: 'vonadresse',
+                        name: 'vonadresse'
+                    },
+                    {
+                        data: 'nachadresse',
+                        name: 'nachadresse'
                     },
                     {
                         data: 'zimmer',

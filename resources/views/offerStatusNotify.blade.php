@@ -1,14 +1,15 @@
-{{ $data['offer']['fullname'] }} für Angebot Nr. {{ $data['offer']['id'] }}
 <h3>Angebot @if($data['canceled'] == 0) genehmigt @elseif($data['canceled'] == 1) abgelehnt @endif</h3>
 
+@if($data['canceled'] == 1)
+<h3>Der Kunde hat die Anfrage storniert. Bitte kontaktieren Sie den untenstehenden Kunden nicht. Für dieses Angebot wird Ihnen keine Gebühr berechnet.</h3>
+@endif
 
+@if($data['canceled'] == 0)
+<h3>Das Angebot wurde auf Kundenwunsch wieder aktiviert. Sie können den untenstehenden Kunden kontaktieren.</h3>
+@endif
 
 <h4>Angebotsdetails</h4>
 @if($data['type'] == 'Schnellanfrage')
-    <p>Sie haben eine neue Anfrage für einen Umzug erhalten.</p> 
-
-    <p>Im Folgenden finden Sie detaillierte Informationen:</p> 
-
     <table>
         <tr>
             <td><strong>Von: Str./ Nr.</strong></td>
@@ -19,12 +20,20 @@
             <td>{{ $data['offer']['von2'] }}</td>
         </tr>
         <tr>
+            <td><strong>Von: Kanton</strong></td>
+            <td>{{ $data['offer']['vonKanton'] }}</td>
+        </tr>
+        <tr>
             <td><strong>Nach: Str./ Nr.</strong></td>
             <td>{{ $data['offer']['nach1'] }}</td>
         </tr>
         <tr>
             <td><strong>Nach: PLZ/ Ort</strong></td>
             <td>{{ $data['offer']['nach2'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Nach: Kanton</strong></td>
+            <td>{{ $data['offer']['nachKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Umzugdatum</strong></td>
@@ -50,13 +59,15 @@
 @endif
 
 @if($data['type'] == 'Reinigung')
-    Sie haben eine neue Anfrage für einen Reinigung erhalten. <br><br>
-
-    Im Folgenden finden Sie detaillierte Informationen:<br>
+    
     <table>
         <tr>
             <td><strong>Adresse (Strasse/PLZ/Ort):</strong></td>
             <td>{{ $data['offer']['address'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Von: Kanton</strong></td>
+            <td>{{ $data['offer']['vonKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Anzahl Zimmer / Räume</strong></td>
@@ -94,9 +105,7 @@
 @endif
 
 @if($data['type'] == 'PrivatUmzug')
-    Sie haben eine neue Anfrage für einen Umzug erhalten. <br><br>
-
-    Im Folgenden finden Sie detaillierte Informationen: <br>
+   
     <table>
         <tr>
             <td><strong>Von: Str./ Nr.:</strong></td>
@@ -105,6 +114,10 @@
         <tr>
             <td><strong>Von: PLZ/Ort</strong></td>
             <td>{{ $data['offer']['vonPlzOrt'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Von: Kanton</strong></td>
+            <td>{{ $data['offer']['vonKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Anzahl Zimmer</strong></td>
@@ -129,6 +142,10 @@
         <tr>
             <td><strong>Nach: PLZ/Ort</strong></td>
             <td>{{ $data['offer']['nachPlzOrt'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Nach: Kanton</strong></td>
+            <td>{{ $data['offer']['nachKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Nach: Etage</strong></td>
@@ -166,9 +183,7 @@
 @endif
 
 @if($data['type'] == 'Firmen')
-    Sie haben eine neue Anfrage für einen Umzug erhalten. <br><br>
-
-    Im Folgenden finden Sie detaillierte Informationen: <br>
+    
     <table>
         <tr>
             <td><strong>Von: Str./ Nr.:</strong></td>
@@ -177,6 +192,10 @@
         <tr>
             <td><strong>Von: PLZ/Ort</strong></td>
             <td>{{ $data['offer']['vonPlzOrt'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Von: Kanton</strong></td>
+            <td>{{ $data['offer']['vonKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Anzahl Räume</strong></td>
@@ -198,6 +217,10 @@
         <tr>
             <td><strong>Nach: PLZ/Ort</strong></td>
             <td>{{ $data['offer']['nachPlzOrt'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Nach: Kanton</strong></td>
+            <td>{{ $data['offer']['nachKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Nach: Etage</strong></td>
@@ -238,33 +261,6 @@
     </table>
 @endif
 
-@if($data['type'] == 'Kontakt')
-    Sie haben eine neue Anfrage für einen Umzug erhalten. <br><br>
-
-    Im Folgenden finden Sie detaillierte Informationen: <br>
-    <table>
-        <tr>
-            <td><strong>Anrede</strong></td>
-            <td>{{ $data['offer']['anrede'] }}</td>
-        </tr>
-        <tr>
-            <td><strong>Vorname / Nachname</strong></td>
-            <td>{{ $data['offer']['fullname'] }}</td>
-        </tr>
-        <tr>
-            <td><strong>Ihre E-Mail-Adresse</strong></td>
-            <td>{{ $data['offer']['email'] }}</td>
-        </tr>
-        <tr>
-            <td><strong>Telefon</strong></td>
-            <td>{{ $data['offer']['telefon'] }}</td>
-        </tr>
-        <tr>
-            <td><strong>Ihre Nachricht</strong></td>
-            <td>{{ $data['offer']['nachricht'] }}</td>
-        </tr>
-    </table>
-@endif
 <br><br>
 Unique ID: #{{ $data['offer']['entryId'] }} <br>
 

@@ -13,12 +13,20 @@
             <td>{{ $data['von2'] }}</td>
         </tr>
         <tr>
+            <td><strong>Von: Kanton</strong></td>
+            <td>{{ $data['vonKanton'] }}</td>
+        </tr>
+        <tr>
             <td><strong>Nach: Str./ Nr.</strong></td>
             <td>{{ $data['nach1'] }}</td>
         </tr>
         <tr>
             <td><strong>Nach: PLZ/ Ort</strong></td>
             <td>{{ $data['nach2'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Nach: Kanton</strong></td>
+            <td>{{ $data['nachKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Umzugdatum</strong></td>
@@ -51,6 +59,10 @@
         <tr>
             <td><strong>Adresse (Strasse/PLZ/Ort):</strong></td>
             <td>{{ $data['address'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Von: Kanton</strong></td>
+            <td>{{ $data['vonKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Anzahl Zimmer / Räume</strong></td>
@@ -101,6 +113,10 @@
             <td>{{ $data['vonPlzOrt'] }}</td>
         </tr>
         <tr>
+            <td><strong>Von: Kanton</strong></td>
+            <td>{{ $data['vonKanton'] }}</td>
+        </tr>
+        <tr>
             <td><strong>Anzahl Zimmer</strong></td>
             <td>{{ $data['anzahlZimmer'] }}</td>
         </tr>
@@ -123,6 +139,10 @@
         <tr>
             <td><strong>Nach: PLZ/Ort</strong></td>
             <td>{{ $data['nachPlzOrt'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Nach: Kanton</strong></td>
+            <td>{{ $data['nachKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Nach: Etage</strong></td>
@@ -173,6 +193,10 @@
             <td>{{ $data['vonPlzOrt'] }}</td>
         </tr>
         <tr>
+            <td><strong>Von: Kanton</strong></td>
+            <td>{{ $data['vonKanton'] }}</td>
+        </tr>
+        <tr>
             <td><strong>Anzahl Räume</strong></td>
             <td>{{ $data['anzahlRaume'] }}</td>
         </tr>
@@ -192,6 +216,10 @@
         <tr>
             <td><strong>Nach: PLZ/Ort</strong></td>
             <td>{{ $data['nachPlzOrt'] }}</td>
+        </tr>
+        <tr>
+            <td><strong>Nach: Kanton</strong></td>
+            <td>{{ $data['nachKanton'] }}</td>
         </tr>
         <tr>
             <td><strong>Nach: Etage</strong></td>
@@ -232,33 +260,6 @@
     </table>
 @endif
 
-@if($data['type'] == 'Kontakt')
-    Sie haben eine neue Anfrage für einen Umzug erhalten. <br><br>
-
-    Im Folgenden finden Sie detaillierte Informationen: <br>
-    <table>
-        <tr>
-            <td><strong>Anrede</strong></td>
-            <td>{{ $data['anrede'] }}</td>
-        </tr>
-        <tr>
-            <td><strong>Vorname / Nachname</strong></td>
-            <td>{{ $data['fullname'] }}</td>
-        </tr>
-        <tr>
-            <td><strong>Ihre E-Mail-Adresse</strong></td>
-            <td>{{ $data['customerEmail'] }}</td>
-        </tr>
-        <tr>
-            <td><strong>Telefon</strong></td>
-            <td>{{ $data['telefon'] }}</td>
-        </tr>
-        <tr>
-            <td><strong>Ihre Nachricht</strong></td>
-            <td>{{ $data['nachricht'] }}</td>
-        </tr>
-    </table>
-@endif
 <br><br>
 Unique ID: #{{ $data['entryId'] }} <br>
 

@@ -40,7 +40,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
             <div class="container py-2">
                 <a class="btn btn-primary rounded-pill text-white navbar-brand b-shadow px-3 py-1" href="{{ url('/') }}">
-                    <b>{{ config('app.name', 'Laravel') }}</b>
+                    <b>Umzugspreisvergleich</b>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -57,10 +57,10 @@
 
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item h5" href="{{ route('firma.index') }}">
-                                    Firma Listesi
+                                    Unternehmensdaten
                                 </a>
                                 <a class="dropdown-item h5" href="{{ route('firma.create') }}">
-                                    Firma Ekle
+                                    Firma Erstellen
                                 </a>
                             </div>
                         </li>
@@ -92,7 +92,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Abmelden') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

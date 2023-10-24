@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Firma Düzenle</h1>
+                <h1>Unternehmensdaten</h1>
             </div>
         </div>
     </div>
@@ -42,37 +42,37 @@
                         </div>
     
                         <div class="col-md-6">
-                            <label class=" col-form-label" for="l0">Email</label>
+                            <label class=" col-form-label" for="l0">E-Mail Adresse</label>
                             <input class="form-control"  name="firmaMail"  type="text" value="{{ $data['mail'] }}" required>                                 
                         </div>
 
                         <div class="col-md-6">
-                            <label class=" col-form-label" for="l0">Password</label>
+                            <label class=" col-form-label" for="l0">Passwort</label>
                             <input class="form-control"  name="firmaPassword"  type="password">                                 
                         </div>
 
                         <div class="col-md-6">
-                            <label class=" col-form-label" for="l0">Telefon</label>
+                            <label class=" col-form-label" for="l0">Rufnummer</label>
                             <input class="form-control"  name="firmaTelefon"  type="text" value="{{ $data['telefon'] }}" required>                                 
                         </div>
 
                         <div class="col-md-6">
-                            <label class=" col-form-label" for="l0">Address</label>
+                            <label class=" col-form-label" for="l0">Adresse</label>
                             <input class="form-control"  name="firmaAddress"  type="text" value="{{ $data['address'] }}" required>                                 
                         </div>
 
                         <div class="col-md-6">
-                            <label class=" col-form-label" for="l0">Contact Person</label>
+                            <label class=" col-form-label" for="l0">Ansprechpartner</label>
                             <input class="form-control"  name="firmaContactPerson"  type="text" value="{{ $data['contactPerson'] }}" required>                                 
                         </div>
 
                         <div class="col-md-6">
-                            <label class=" col-form-label" for="l0">Website</label>
+                            <label class=" col-form-label" for="l0">Webseite</label>
                             <input class="form-control"  name="firmaWebsite"  type="text" value="{{ $data['website'] }}" required>                                 
                         </div>
 
                         <div class="col-md-6">
-                            <label class=" col-form-label" for="l0">Offer Limit</label>
+                            <label class=" col-form-label" for="l0">Angebotsgrenze / Monatlich</label>
                             <input class="form-control"  name="entryLimit"  type="number" value="{{ $data['counter2'] }}" required>                                 
                         </div>
 

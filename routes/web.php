@@ -71,9 +71,11 @@ Route::group(['namespace' => 'front', 'middleware' => ['auth']], function () {
     Route::group(['namespace' => 'offerList', 'as' => 'offerList.','prefix' => 'offerList','middleware' => ['CheckOfferId']], function () {
         Route::get('/', [App\Http\Controllers\front\offerList\indexController::class, 'index'])->name('index');
         Route::post('/data', [App\Http\Controllers\front\offerList\indexController::class, 'data'])->name('data');
+        Route::post('/data2', [App\Http\Controllers\front\offerList\indexController::class, 'data2'])->name('data2');
         Route::post('/statusChanger/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'statusChanger'])->name('statusChanger');
         Route::post('/cancelOffer/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'cancelOffer'])->name('cancelOffer');
         Route::get('/detail/{id}/{type}', [App\Http\Controllers\front\offerList\indexController::class, 'detail'])->name('detail');
+        Route::get('/kunden', [App\Http\Controllers\front\offerList\indexController::class, 'kunden'])->name('kunden');
     });
 
     Route::group(['namespace' => 'firmaUser', 'as' => 'firmaUser.','prefix' => 'firmaUser','middleware' => ['CheckUser']], function () {

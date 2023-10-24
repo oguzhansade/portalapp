@@ -254,9 +254,10 @@ class indexController extends Controller
                     'password' => Hash::make($password),
                 ];
             }
-            
+            $updateUser = null;
             $update = Firma::where('id',$id)->update($updateFirma);
             $userCounter = User::where('firmaId',$id)->count();
+
             if($userCounter != 0)
             {
                 $updateUser = User::where('firmaId',$id)->update($user);
@@ -313,10 +314,10 @@ class indexController extends Controller
         ->editColumn('status', function($table){
             if($table->status == 'Pasif')
             {
-                return '<button class="btn btn-sm btn-warning">Pasif</button>';
+                return '<button class="btn btn-sm btn-warning">Passiv</button>';
             }
             else {
-                return '<button class="btn btn-sm btn-success">Aktif</button>';
+                return '<button class="btn btn-sm btn-success">Aktiv</button>';
             }
         })
         ->addColumn('option',function($table) 
@@ -331,6 +332,7 @@ class indexController extends Controller
 
         return $data;
     }
+
 
     public function recordData( Request $request)
     {
@@ -352,6 +354,46 @@ class indexController extends Controller
             $table->whereDate('created_at', '<=', $request->max_date);
         }
         
+        // if ($request->kundeSearch) {
+        //     $table->where(function ($query) use ($request) {
+        //         $query->where('fullname', 'like', '%' . $request->kundeSearch . '%')
+        //             ->orWhereHas('PrivatUmzugForm', function ($subquery) use ($request) {
+        //                 $subquery->where('fullname', 'like', '%' . $request->kundeSearch . '%');
+        //             })
+        //             ->orWhereHas('schnellenform', function ($subquery) use ($request) {
+        //                 $subquery->where('fullname', 'like', '%' . $request->kundeSearch . '%');
+        //             });
+        //     });
+        // } 
+
+        if (!empty($request->kundeSearch)) {
+            $searchValue = $request->kundeSearch;
+            
+            $customerIds = schnellenform::where('fullname', 'like', "%$searchValue%")
+                ->pluck('id')
+                ->toArray();
+            
+            $model1Ids = PrivatUmzugForm::where('fullname', 'like', "%$searchValue%")
+                ->pluck('id')
+                ->toArray();
+            
+            $model2Ids = ReinigungForm::where('fullname', 'like', "%$searchValue%")
+                ->pluck('id')
+                ->toArray();
+            
+            $model3Ids = FirmenForm::where('fullname', 'like', "%$searchValue%")
+                ->pluck('id')
+                ->toArray();
+            
+            // Şimdi bu farklı modelerden elde edilen ID listelerini birleştirin
+            $allIds = array_merge($customerIds, $model1Ids, $model2Ids, $model3Ids);
+            
+            // Tekrar eden değerleri kaldırmak için unique yapabilirsiniz
+            $uniqueIds = array_unique($allIds);
+            
+            $table->whereIn('offerId', $uniqueIds);
+        }
+
         $data=DataTables::of($table)
         ->editColumn('created_at', function ($data) {
             $formatedDate = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at)->format('d-m-Y H:i:s');
@@ -361,6 +403,7 @@ class indexController extends Controller
             $firma = Firma::where('id',$data['firmaId'])->first();
             return $firma['name'];
         })
+        
         ->addColumn('customer', function ($data){
             if($data['type'] == 'Schnellanfrage') {
                 $customer = schnellenform::where('id',$data['offerId'])->first();
@@ -383,10 +426,10 @@ class indexController extends Controller
         ->editColumn('status', function ($data) {
             if($data['status'] == 'Pasif')
             {
-                return '<a class="btn btn-sm  btn-warning px-5">Pasif</a>';
+                return '<a class="btn btn-sm  btn-warning px-5">Passiv</a>';
             }
             else {
-                return '<a class="btn btn-sm  btn-success px-5">Aktif</a>';
+                return '<a class="btn btn-sm  btn-success px-5">Aktiv</a>';
             }
         })
 

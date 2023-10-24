@@ -129,21 +129,21 @@ For what reason would it be advisable for me to think about business content? Th
                                     </tr>
                                     <tr>
                                         <td width="50%" align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                            <b>Mail</b><br>
+                                            <b>E-Mail Adresse</b><br>
                                             {{ $firma['mail'] }}
                                         </td>
                                         <td width="50%" align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                            <b>Telefon</b><br>
+                                            <b>Rufnummer</b><br>
                                             {{ $firma['telefon'] }}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td width="50%" align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                            <b>Address</b><br>
+                                            <b>Adresse</b><br>
                                             {{ $firma['address'] }}
                                         </td>
                                         <td width="50%" align="center" style="font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px; padding: 5px 10px;">
-                                            <b>Contact Person</b><br>
+                                            <b>Ansprechpartner</b><br>
                                             {{ $firma['contactPerson'] }}
                                         </td>
                                     </tr>
@@ -179,8 +179,10 @@ For what reason would it be advisable for me to think about business content? Th
                             @if($data['type'] == 'Schnellanfrage')
                                 <b>Von: Str./ Nr.</b><br>
                                 <b>Von: PLZ/ Ort</b><br>
+                                <b>Von: Kanton</b><br>
                                 <b>Nach: Str./ Nr.</b><br>
                                 <b>Nach: PLZ/ Ort</b><br>
+                                <b>Nach: Kanton</b><br>
                                 <b>Umzugdatum</b><br>
                                 <b>Zimmer</b><br>
                                 <b>Vorname / Name</b><br>
@@ -189,6 +191,7 @@ For what reason would it be advisable for me to think about business content? Th
                             @elseif($data['type'] == 'PrivatUmzug')
                                 <b>Von: Str./ Nr.:</b><br>
                                 <b>Von: PLZ/Ort</b><br>
+                                <b>Von: Kanton</b><br>
                                 <b>Anzahl Zimmer</b><br>
                                 <b>Von: Etage</b><br>
                                 <b>Von: Lift vorhanden?</b><br>
@@ -196,6 +199,7 @@ For what reason would it be advisable for me to think about business content? Th
                                 <b>Nach: Str./ Nr.</b><br>
                                 <b>Nach: PLZ/Ort</b><br>
                                 <b>Nach: Etage</b><br>
+                                <b>Nach: Kanton</b><br>
                                 <b>Umzugsdatum</b><br>
                                 <b>Nach: Lift vorhanden?</b><br>
                                 <b>Anrede</b><br>
@@ -205,6 +209,7 @@ For what reason would it be advisable for me to think about business content? Th
                                 <b>Bemerkungen</b><br>
                             @elseif($data['type'] == 'Reinigung')
                                 <b>Adresse (Strasse/PLZ/Ort):</b><br>
+                                <b>Von: Kanton</b><br>
                                 <b>Anzahl Zimmer / Räume</b><br>
                                 <b>Grösse in m2</b><br>
                                 <b>Reinigungstermin</b><br>
@@ -216,12 +221,14 @@ For what reason would it be advisable for me to think about business content? Th
                             @elseif($data['type'] == 'Firmen')
                                 <b>Von: Str./ Nr.:</b><br>
                                 <b>Von: PLZ/Ort</b><br>
+                                <b>Von: Kanton</b><br>
                                 <b>Anzahl Räume</b><br>
                                 <b>Von: Etage</b><br>
                                 <b>Von: Lift vorhanden?</b><br>
                                 <b>Nach: Str./ Nr.</b><br>
                                 <b>Nach: PLZ/Ort</b><br>
                                 <b>Nach: Etage</b><br>
+                                <b>Nach: Kanton</b><br>
                                 <b>Umzugsdatum</b><br>
                                 <b>Nach: Lift vorhanden?</b><br>
                                 <b>Firma</b><br>
@@ -236,8 +243,10 @@ For what reason would it be advisable for me to think about business content? Th
                             @if($data['type'] == 'Schnellanfrage')
                                 {{ $data['offer']['von1'] }}<br>
                                 {{ $data['offer']['von2'] }}<br>
+                                {{ $data['offer']['vonKanton'] }}<br>
                                 {{ $data['offer']['nach1'] }}<br>
                                 {{ $data['offer']['nach2'] }}<br>
+                                {{ $data['offer']['nachKanton'] }}<br>
                                 {{ $data['offer']['umzugdate'] }}<br>
                                 {{ $data['offer']['zimmer'] }}<br>
                                 {{ $data['offer']['fullname'] }}<br>
@@ -246,6 +255,7 @@ For what reason would it be advisable for me to think about business content? Th
                             @elseif($data['type'] == 'PrivatUmzug')
                                 {{ $data['offer']['vonStrasse'] }}<br>
                                 {{ $data['offer']['vonPlzOrt'] }}<br>
+                                {{ $data['offer']['vonKanton'] }}<br>
                                 {{ $data['offer']['anzahlZimmer'] }}<br>
                                 {{ $data['offer']['vonEtage'] }}<br>
                                 {{ $data['offer']['ausLift'] }}<br>
@@ -253,6 +263,7 @@ For what reason would it be advisable for me to think about business content? Th
                                 {{ $data['offer']['nachStrasse'] }}<br>
                                 {{ $data['offer']['nachPlzOrt'] }}<br>
                                 {{ $data['offer']['nachEtage'] }}<br>
+                                {{ $data['offer']['nachKanton'] }}<br>
                                 @if($data['offer']['umzugDate']){{ date('d.m.Y', strtotime($data['offer']['umzugDate']));  }} @else - @endif<br>
                                 {{ $data['offer']['einLift'] }}<br>
                                 {{ $data['offer']['anrede'] }}<br>
@@ -262,6 +273,7 @@ For what reason would it be advisable for me to think about business content? Th
                                 {{ $data['offer']['bemerkungen'] }}<br>
                             @elseif($data['type'] == 'Reinigung')
                                 {{ $data['offer']['address'] }}<br>
+                                {{ $data['offer']['vonKanton'] }}<br>
                                 {{ $data['offer']['anzahlZimmer'] }}<br>
                                 {{ $data['offer']['m2'] }}<br>
                                 @if($data['offer']['reinigungTermin']){{ date('d.m.Y', strtotime($data['offer']['reinigungTermin']));  }} @else - @endif<br>
@@ -273,12 +285,14 @@ For what reason would it be advisable for me to think about business content? Th
                             @elseif($data['type'] == 'Firmen')
                                 {{ $data['offer']['vonStrasse'] }}<br>
                                 {{ $data['offer']['vonPlzOrt'] }}<br>
+                                {{ $data['offer']['vonKanton'] }}<br>
                                 {{ $data['offer']['anzahlRaume'] }}<br>
                                 {{ $data['offer']['vonEtage'] }}<br>
                                 {{ $data['offer']['vonLift'] }}<br>
                                 {{ $data['offer']['nachStrasse'] }}<br>
                                 {{ $data['offer']['nachPlzOrt'] }}<br>
                                 {{ $data['offer']['nachEtage'] }}<br>
+                                {{ $data['offer']['nachKanton'] }}<br>
                                 @if($data['offer']['umzugDate']){{ date('d.m.Y', strtotime($data['offer']['umzugDate']));  }} @else - @endif<br>
                                 {{ $data['offer']['nachLift'] }}<br>
                                 {{ $data['offer']['firma'] }}<br>

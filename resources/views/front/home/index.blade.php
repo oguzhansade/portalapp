@@ -49,7 +49,7 @@
     <div class="container">
         <div class="row d-flex p-0 justify-content-start" >
             <div class="col-md-12 d-flex justify-content-start">
-                <span class="h4 px-4 py-2 bg-primary text-white b-shadow rounded-custom">Hoşgeldin: <b>{{ App\Models\User::getUser(Auth::id(),'name') }}</b></span> </span>
+                <span class="h4 px-4 py-2 bg-primary text-white b-shadow rounded-custom">Willkommen: <b>{{ App\Models\User::getUser(Auth::id(),'name') }}</b></span> </span>
             </div>
         </div>
         @if(App\Models\User::getUser(Auth::id(),'firmaId')> 0)
@@ -59,7 +59,7 @@
                     <div class="card b-shadow" style="width: 18rem;border:0;border-radius:35px;">
                         <img src="{{ asset('assets/demo/firmaList.svg') }}" class="card-img-top p-3 " alt="..." height="150">
                         <div class="card-body bg-primary b-shadow" style="border-bottom-left-radius:35px;border-bottom-right-radius:35px;">
-                            <h5 class="card-title text-white text-center">Teklif Listesi </h5>
+                            <h5 class="card-title text-white text-center">Angebotsliste </h5>
                             <p class="card-text"></p>
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                     <div class="card b-shadow" style="width: 18rem;border:0;border-radius:35px;">
                         <img src="{{ asset('assets/demo/firmaList.svg') }}" class="card-img-top p-3 " alt="..." height="150">
                         <div class="card-body bg-primary b-shadow" style="border-bottom-left-radius:35px;border-bottom-right-radius:35px;">
-                            <h5 class="card-title text-white text-center">Firmanı Düzenle</h5>
+                            <h5 class="card-title text-white text-center">Unternehmensdaten</h5>
                             <p class="card-text"></p>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                     <div class="card b-shadow" style="width: 18rem;border:0;border-radius:35px;">
                         <img src="{{ asset('assets/demo/firmaList.svg') }}" class="card-img-top p-3 " alt="..." height="150">
                         <div class="card-body bg-primary b-shadow" style="border-bottom-left-radius:35px;border-bottom-right-radius:35px;">
-                            <h5 class="card-title text-white text-center">Teklif Listesi </h5>
+                            <h5 class="card-title text-white text-center">Angebotsliste </h5>
                             <p class="card-text"></p>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                         <span class="notify-badge">{{ App\Models\Firma::getFirmaTotal() }}</span>
                         <img src="{{ asset('assets/demo/firmaList.svg') }}" class="card-img-top p-3" alt="..." height="150">
                         <div class="card-body bg-primary b-shadow" style="border-bottom-left-radius:35px;border-bottom-right-radius:35px;">
-                            <h5 class="card-title text-white text-center">Firma Listesi </h5>
+                            <h5 class="card-title text-white text-center">Unternehmensdaten </h5>
                             <p class="card-text"></p>
                         </div>
                     </div>
@@ -108,7 +108,18 @@
                     <div class="card b-shadow" style="width: 18rem;border:0;border-radius:35px;">
                         <img src="{{ asset('assets/demo/newFirma.svg') }}" class="card-img-top p-3 " alt="..." height="150">
                         <div class="card-body bg-primary b-shadow" style="border-bottom-left-radius:35px;border-bottom-right-radius:35px;">
-                            <h5 class="card-title text-white text-center">Firma Ekle </h5>
+                            <h5 class="card-title text-white text-center">Firma Erstellen</h5>
+                            <p class="card-text"></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 p-1">
+                <a href="{{ route('offerList.kunden') }}" class="hvr-grow text-decoration-none">
+                    <div class="card b-shadow" style="width: 18rem;border:0;border-radius:35px;">
+                        <img src="{{ asset('assets/demo/firmaList.svg') }}" class="card-img-top p-3 " alt="..." height="150">
+                        <div class="card-body bg-primary b-shadow" style="border-bottom-left-radius:35px;border-bottom-right-radius:35px;">
+                            <h5 class="card-title text-white text-center">Kundenliste </h5>
                             <p class="card-text"></p>
                         </div>
                     </div>
