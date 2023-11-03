@@ -213,6 +213,28 @@ class FirmaSelector
             $customerMail = $form['email'];
             $entryId = $form['entryId'];
         }
+        else if ($type == 'PrivatUmzug')
+        {
+            $form = PrivatUmzugForm::where('id',$offerId)->first();
+            $customerName = $form['fullname'];
+            $customerMail = $form['email'];
+            $entryId = $form['entryId'];
+        }
+        else if ($type == 'Firmen')
+        {
+            $form = FirmenForm::where('id',$offerId)->first();
+            $customerName = $form['fullname'];
+            $customerMail = $form['email'];
+            $entryId = $form['entryId'];
+        }
+
+        else if ($type == 'Reinigung')
+        {
+            $form = ReinigungForm::where('id',$offerId)->first();
+            $customerName = $form['fullname'];
+            $customerMail = $form['email'];
+            $entryId = $form['entryId'];
+        }
 
         $newOffers = array_map(function ($offer) {
             $firmaId = $offer['firmaId'];
